@@ -1,4 +1,4 @@
-const BASE_URL = 'http://165.227.191.128:5000/';
+const BASE_URL = 'http://165.227.191.128:8080/';
 
 const SYMBOLS = 'symbols/'
 const SYMBOLS_SEARCH = SYMBOLS + 'search/';
@@ -24,4 +24,4 @@ export function getSymbols(ticker) {
 export function getSymbol(intrument_type, exchange, ticker) {
 	const url = BASE_URL + SYMBOLS + intrument_type + '/' + exchange + '/' + ticker;
 	return fetch(url).then(data => {return data.json()});
-} 
+}
