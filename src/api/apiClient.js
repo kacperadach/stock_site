@@ -1,4 +1,4 @@
-const BASE_URL = 'http://127.0.0.1:5000/';
+const BASE_URL = 'http://165.227.191.128:5000/';
 
 const SYMBOLS = 'symbols/'
 const SYMBOLS_SEARCH = SYMBOLS + 'search/';
