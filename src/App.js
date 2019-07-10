@@ -17,7 +17,7 @@ class App extends Component {
 			  crossOrigin="anonymous"
 			/>
     		<SymbolSearch />
-    		<Route path="/quote" component={Quote} />
+    		<Route path="/chart" component={Quote} />
     	</Router>
         
     );

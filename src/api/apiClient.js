@@ -1,4 +1,4 @@
-const BASE_URL = 'http://165.227.191.128:5000/';
+const BASE_URL = 'https://www.bullzone.club/';
 
 const SYMBOLS = 'symbols/'
 const SYMBOLS_SEARCH = SYMBOLS + 'search/';

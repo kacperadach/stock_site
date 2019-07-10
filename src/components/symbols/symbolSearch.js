@@ -34,7 +34,7 @@ class SymbolSearchComponent extends React.Component {
 
 
 	getLink(symbol) {
-		return '/quote/' + symbol.instrument_type + '/' + symbol.exchange + '/' + symbol.symbol;
+		return '/chart/' + symbol.instrument_type + '/' + symbol.exchange + '/' + symbol.symbol;
 	}
 
 	handleClick(event, symbol) {
