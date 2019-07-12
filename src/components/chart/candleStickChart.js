@@ -82,7 +82,6 @@ var xGrid = showGrid ? {
 function CandleStickChart(props) {
 
 	const { interval } = props;
-	console.log(interval.data);
 	
 	const data = interval.data;
 	const meta_data = interval.meta_data;
@@ -115,7 +114,7 @@ function CandleStickChart(props) {
 		.accessor(d => d.macd);
 	
 	return (
-		<div>
+		<div className="mx-auto w-1/2 ml-20">
 			<ChartCanvas height={500}
 					ratio={1}
 					width={1114}

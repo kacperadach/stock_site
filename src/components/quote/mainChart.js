@@ -3,7 +3,6 @@ import socket from '../../api/socket';
 import CandleStickChart from '../chart/candleStickChart';
 import { timeParse } from "d3-time-format";
 
-
 function MainChart({ match }) {
 
     const id = match.params.id;
@@ -15,18 +14,17 @@ function MainChart({ match }) {
         socket.on('chart', d => {
             let json_data = JSON.parse(d);
             json_data['data'] = formatData(json_data['data']);
-            
-            if (data.data.length === 0 || data.meta_data.time_interval != json_data.meta_data.time_interval) {
-                console.log('setting');
-                setData(json_data);
-            } else {
-                console.log('combining');
-                setData(combineInterval(json_data, data));
-            }
+
+            setData(prevData => {
+                if (prevData.data.length === 0 || prevData.meta_data.time_interval != json_data.meta_data.time_interval) {
+                    return json_data;
+                } else {
+                    return combineInterval(json_data, prevData);
+                }
+            });
         });
     }, []);
-    
-    console.log('render');
+
     return (
         <div className="mx-auto">
             {data.data.length !== 0 && <CandleStickChart uid={id} interval={data} />} 
@@ -62,6 +60,9 @@ function combineInterval(newDataObj, oldDataObj) {
             }
         }
     }
+
+    console.log('nothing returned');
+    return {'data': oldData, 'meta_data': meta_data}
 }
 
 function formatData(data) {
