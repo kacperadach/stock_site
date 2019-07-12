@@ -1,6 +1,6 @@
 // const BASE_URL = 'https://www.bullzone.club/';
 
-const BASE_URL = '0.0.0.0:5000';
+const BASE_URL = '0.0.0.0:5000/';
 
 
 const SYMBOLS = 'symbols/'

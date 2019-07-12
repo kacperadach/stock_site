@@ -1,29 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import ChartComponent from './components/chart/chartComponent';
-import SymbolSearch from './components/symbols/symbolSearch';
-import Socket from './components/socket/socket';
+import Search from './components/symbols/search';
 import Quote from './components/quote/quote';
+import MainChart from './components/quote/mainChart';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-class App extends Component {
-  render() {
-    return (
-    	<Router>
-    		<link
-			  rel="stylesheet"
-			  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-			  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-			  crossOrigin="anonymous"
-			/>
-			<Socket />
-    		<SymbolSearch />
-    		<Route path="/chart" component={Quote} />
-    	</Router>
+// class App extends Component {
+//   render() {
+//     return (
+//     	<Router>
+//     		<Search />
+//     	</Router>
         
+//     );
+//   }
+// }
+
+function App() {
+	return (
+    	<Router>
+			<div className="font-sans font-semibold bg-white">
+    			<Search />
+				<Route path="/chart/:id" component={MainChart} />
+			</div>
+    	</Router>
     );
-  }
 }
 
 export default App;
