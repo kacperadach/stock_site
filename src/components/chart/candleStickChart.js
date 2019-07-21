@@ -114,7 +114,7 @@ function CandleStickChart(props) {
 		.accessor(d => d.macd);
 	
 	return (
-		<div className="mx-auto w-1/2 ml-20">
+		<div className="ml-20">
 			<ChartCanvas height={500}
 					ratio={1}
 					width={1114}
@@ -145,7 +145,6 @@ function CandleStickChart(props) {
 }
 
 function handleDownloadMore(uid, startDate, endDate) {
-	console.log(uid);
 	const end = endDate.getFullYear() + '-' + (endDate.getMonth() + 1) + '-' + endDate.getDate();
 	const start = startDate.getFullYear() + '-' + (startDate.getMonth() + 1) + '-' + startDate.getDate();
 	socket.emit('chart', {'uid': uid, 'start': start, 'end': end});

@@ -43,7 +43,6 @@ class SymbolSearchComponent extends React.Component {
 	}
 
 	handleFocus() {
-		console.log('handleFocus');
 		this.setState({'selectedSymbol': false});
 	}
 
@@ -71,7 +70,6 @@ class SymbolSearchComponent extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-	console.log(state);
 	return {
 		selectedSymbol: state.selectedSymbol
 	}
