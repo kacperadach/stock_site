@@ -11,21 +11,21 @@ function Search() {
     const [symbols, setSymbols] = useState([]);
 
     useEffect(() => {
-        if (searchTerm == '') {
+        if (searchTerm === '') {
             setSymbols([]);
             return;
         }
 
         socket.emit('symbols', searchTerm);
         socket.on('symbols', (data) =>{
-            if (searchTerm == data['term']) {
+            if (searchTerm === data['term']) {
                 setSymbols(data['results']);
             }
         });
     }, [searchTerm]);
 
     return (
-        <div className="container mx-auto px-4">
+        <div className="container px-4">
             <input autoComplete="off" 
                     list="symbols" 
                     id="symbols-input" 

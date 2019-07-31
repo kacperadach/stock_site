@@ -14,7 +14,6 @@ class ChartComponent extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.data);
 		if (this.props.data.length !== 0) {
 			return (
 				<TypeChooser>

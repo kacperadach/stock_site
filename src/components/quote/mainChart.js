@@ -40,23 +40,45 @@ function MainChartDescription({ symbol }) {
 
     useEffect(() => {
         socket.on('metadata', data => {
+            console.log('fetched meta');
+            console.log(data);
             setMeta(data);
         });
     }, []);
 
     useEffect(() => {
         if (symbol.meta_data.uid !== undefined) {
+            console.log('fetching meta');
             socket.emit('metadata', {'uid': symbol.meta_data.uid });
         }
     }, [symbol]);
 
     return (
-        <div className="bg-gray-300 p-3 rounded h-full">
+        <div>
+            {meta && <ChartDescription meta={meta} />}
+        </div>
+    );  
+}
+
+export function ChartDescription({ meta }) {
+
+    let name = "";
+    console.log(meta);
+    if (meta.long_name !== undefined) {
+        name = meta.long_name;
+    } else if (meta.meta_data !== undefined && meta.meta_data.common_name !== undefined) {
+        name = meta.meta_data.common_name;
+    } else if (meta.common_name !== undefined) {
+        name = meta.common_name;
+    }
+
+    return (
+        <div className="bg-gray-300 p-3 rounded h-full inline-block">
             <div className="bg-white p-8 h-full text-xl flex flex-col">
-                <span className="text-3xl">{meta.long_name}</span>
-                <span className="text-sm">{meta.sector}</span>
-                <span className="text-xs">{meta.exchange}</span>
-                <span className="text-xs">{meta.country}</span>
+                <span className="text-3xl">{name}</span>
+                {meta.sector && <span className="text-sm">{meta.sector}</span>}
+                {meta.exchange && <span className="text-xs">{meta.exchange}</span>}
+                {meta.country && <span className="text-xs">{meta.country}</span>}
                 <div className="flex flex-row align-bottom py-2">
                     {meta.close && <span className="text-2xl pr-1 my-auto">{meta.close}</span>}
                     {meta.point_diff && <Change  className="text-xs px-1 my-auto text-xl" value={meta.point_diff}>{meta.point_diff}</Change>}
