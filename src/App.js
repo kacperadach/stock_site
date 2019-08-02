@@ -8,13 +8,16 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function App() {
 	return (
-    	<Router>
-			<div className="font-sans font-semibold bg-white">
-				<HomeAndSearch />
-				<LiveFutures />
-				<Route path="/chart/:id" component={MainChart} />
-			</div>
-    	</Router>
+		<div className="px-5 inline-block w-full">
+			<Router>
+				<div className="font-sans font-semibold bg-white w-2/3 m-auto">
+					<HomeAndSearch />
+					<LiveFutures />
+					<Route path="/chart/:id" component={MainChart} />
+				</div>
+			</Router>
+		</div>
+    	
     );
 }
 

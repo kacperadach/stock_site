@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import socket from '../../api/socket';
 import styled from 'styled-components';
-import { ChartDescription } from '../../components/quote/mainChart';
+import ChartDescription from '../../components/quote/chartDescription';
 
 const PER_PAGE = 5;
 
@@ -54,7 +54,7 @@ function Future({ data }) {
     return (
             <form action={link}>
                 <button type="submit" formaction={link}>
-                    <ChartDescription meta={data} />
+                    <ChartDescription meta={data} type="live" />
                 </button>
             </form>
             

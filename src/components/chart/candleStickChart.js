@@ -18,7 +18,7 @@ import {
 	EdgeIndicator,
 	CurrentCoordinate,
 	MouseCoordinateX,
-	MouseCoordinateY,
+	MouseCoordinateY
 } from "react-stockcharts/lib/coordinates";
 
 import {
@@ -26,6 +26,10 @@ import {
 	MovingAverageTooltip,
 	MACDTooltip,
 } from "react-stockcharts/lib/tooltip";
+
+import {
+	EventCapture
+} from "react-stockcharts/lib/EventCapture";
 
 import { discontinuousTimeScaleProvider } from 'react-stockcharts/lib/scale';
 
@@ -115,7 +119,9 @@ function CandleStickChart(props) {
 	
 	return (
 		<div className="ml-20">
-			<ChartCanvas height={500}
+			<ChartCanvas
+					mouseMoveEvent={true} 
+					height={500}
 					ratio={1}
 					width={1114}
 					clamp={false}
@@ -137,6 +143,14 @@ function CandleStickChart(props) {
 					<XAxis axisAt="bottom" orient="bottom" ticks={10} {...xGrid} />
 					<YAxis axisAt="left" orient="left" ticks={10} {...yGrid} />
 					<CandlestickSeries width={timeIntervalBarWidth(utcDay)}/>
+					<MouseCoordinateY
+						at="right"
+						orient="right"
+						displayFormat={format(".2f")} />
+					 <MouseCoordinateX
+						at="bottom"
+						orient="bottom"
+						displayFormat={timeFormat("%Y-%m-%d")} />
 				</Chart>
 				<CrossHairCursor />
 			</ChartCanvas>
