@@ -9,6 +9,20 @@ function MainChart({ match }) {
     const id = match.params.id;
 
     const [data, setData] = useState({'data': [], 'meta_data': {'time_interval': '1d'}});
+    const [meta, setMeta] = useState({});
+
+    useEffect(() => {
+        socket.on('metadata', data => {
+            console.log('fetched meta');
+            console.log(data);
+            setMeta(data);
+        });
+    }, []);
+
+    useEffect(() => {
+        socket.emit('metadata', {'uid': id })
+        setInterval(() => socket.emit('metadata', {'uid': id }), 5000);
+    }, []);
 
     useEffect(() => {
         socket.emit('chart', {'uid': id});
@@ -29,35 +43,9 @@ function MainChart({ match }) {
     return (
         <div className="mx-auto flex">
             <CandleStickChart uid={id} interval={data} />
-            <MainChartDescription symbol={data} />
-        </div>
-    );
-}
-
-function MainChartDescription({ symbol }) {
-
-    const [meta, setMeta] = useState({});
-
-    useEffect(() => {
-        socket.on('metadata', data => {
-            console.log('fetched meta');
-            console.log(data);
-            setMeta(data);
-        });
-    }, []);
-
-    useEffect(() => {
-        if (symbol.meta_data.uid !== undefined) {
-            console.log('fetching meta');
-            socket.emit('metadata', {'uid': symbol.meta_data.uid });
-        }
-    }, [symbol]);
-
-    return (
-        <div>
             {meta && <ChartDescription meta={meta} />}
         </div>
-    );  
+    );
 }
 
 export function ChartDescription({ meta }) {
