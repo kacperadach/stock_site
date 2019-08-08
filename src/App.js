@@ -5,6 +5,7 @@ import Search from './components/symbols/search';
 import MainChart from './components/quote/mainChart';
 import LiveFutures from './components/live/liveFutures';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Scraper from './components/scraper/scraper';
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 					<HomeAndSearch />
 					<LiveFutures />
 					<Route path="/chart/:id" component={MainChart} />
+					<Route path="/scraper" component={Scraper} />
 				</div>
 			</Router>
 		</div>
