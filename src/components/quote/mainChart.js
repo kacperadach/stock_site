@@ -3,6 +3,7 @@ import socket from '../../api/socket';
 import CandleStickChart from '../chart/candleStickChart';
 import { timeParse } from "d3-time-format";
 import ChartDescription from './chartDescription';
+import Fundamentals from './fundamentals';
 
 function MainChart({ match }) {
 
@@ -10,12 +11,11 @@ function MainChart({ match }) {
 
     const [data, setData] = useState({'data': [], 'meta_data': {'time_interval': '1d'}});
     const [meta, setMeta] = useState({});
+    const [fundamentals, setFundamentals] = useState({});
 
 
     useEffect(() => {
         socket.on('metadata', data => {
-            console.log('fetched meta');
-            console.log(data);
             setMeta(data);
         });
 
@@ -39,10 +39,22 @@ function MainChart({ match }) {
         });
     }, []);
 
+    useEffect(() => {
+        socket.emit('fundamentals', {'uid': id});
+        socket.on('fundamentals', d => {
+            setFundamentals(d);
+        });
+    }, []);
+
     return (
-        <div className="mx-auto flex">
-            <CandleStickChart uid={id} interval={data} />
-            {meta && <ChartDescription meta={meta} type="main" />}
+        <div>
+            <div className="mx-auto flex">
+                <CandleStickChart uid={id} interval={data} />
+                {meta && <ChartDescription meta={meta} type="main" />}
+            </div>
+            <div>
+                {fundamentals && <Fundamentals fundamentals={fundamentals} />}
+            </div>
         </div>
     );
 }
