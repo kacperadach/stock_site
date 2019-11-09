@@ -45,12 +45,19 @@ function MainChart({ match }) {
             setFundamentals(d);
         });
     }, []);
+    
+    let description = '';
+    if (Object.entries(fundamentals).length !== 0) {
+        description = fundamentals.data.description;
+    }
+
+    console.log(description);
 
     return (
         <div>
             <div className="mx-auto flex">
                 <CandleStickChart uid={id} interval={data} />
-                {meta && <ChartDescription meta={meta} type="main" />}
+                {meta && <div className="m-4"><ChartDescription type="main" meta={meta} description={description} /></div>}
             </div>
             <div>
                 {fundamentals && <Fundamentals fundamentals={fundamentals} />}

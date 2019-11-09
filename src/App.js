@@ -11,7 +11,7 @@ function App() {
 	return (
 		<div className="px-5 inline-block w-full">
 			<Router>
-				<div className="font-sans font-semibold bg-white w-2/3 m-auto">
+				<div className="font-sans font-semibold bg-white m-auto">
 					<HomeAndSearch />
 					<LiveFutures />
 					<Route path="/chart/:id" component={MainChart} />
@@ -25,7 +25,7 @@ function App() {
 
 export function HomeAndSearch() {
 	return (
-		<div className="inline-flex w-full mx-48">
+		<div className="inline-flex mx-48 w-1/2	">
 			<Home />
 			<Search />
 		</div>

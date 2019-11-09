@@ -118,42 +118,46 @@ function CandleStickChart(props) {
 		.accessor(d => d.macd);
 	
 	return (
-		<div className="ml-20">
-			<ChartCanvas
-					mouseMoveEvent={true} 
-					height={500}
-					ratio={1}
-					width={1114}
-					clamp={false}
-					margin={{ left: 70, right: 70, top: 20, bottom: 30 }}
-					seriesName={meta_data.symbol}
-					data={data}
-					type="hybrid"
-					yExtents={yExtents}
-					xAccessor={xAccessor}
-					xScale={scaleTime()}
-					xExtents={xExtents}
-					xScaleProvider={discontinuousTimeScaleProvider}
-					onLoadMore={(startDate, endDate) => handleDownloadMore(uid, startDate, endDate)}>
+		<div className="">
+			<div className="bg-gray-300 p-3 m-4">
+				<div className="bg-white">
+					<ChartCanvas
+							mouseMoveEvent={true} 
+							height={500}
+							ratio={1}
+							width={1114}
+							clamp={false}
+							margin={{ left: 70, right: 70, top: 20, bottom: 30 }}
+							seriesName={meta_data.symbol}
+							data={data}
+							type="hybrid"
+							yExtents={yExtents}
+							xAccessor={xAccessor}
+							xScale={scaleTime()}
+							xExtents={xExtents}
+							xScaleProvider={discontinuousTimeScaleProvider}
+							onLoadMore={(startDate, endDate) => handleDownloadMore(uid, startDate, endDate)}>
 
-				<Chart 
-					id={1} 
-					yExtents={d => [d.high, d.low]} 
-					height={400}>
-					<XAxis axisAt="bottom" orient="bottom" ticks={10} {...xGrid} />
-					<YAxis axisAt="left" orient="left" ticks={10} {...yGrid} />
-					<CandlestickSeries width={timeIntervalBarWidth(utcDay)}/>
-					<MouseCoordinateY
-						at="right"
-						orient="right"
-						displayFormat={format(".2f")} />
-					 <MouseCoordinateX
-						at="bottom"
-						orient="bottom"
-						displayFormat={timeFormat("%Y-%m-%d")} />
-				</Chart>
-				<CrossHairCursor />
-			</ChartCanvas>
+						<Chart 
+							id={1} 
+							yExtents={d => [d.high, d.low]} 
+							height={400}>
+							<XAxis axisAt="bottom" orient="bottom" ticks={10} {...xGrid} />
+							<YAxis axisAt="left" orient="left" ticks={10} {...yGrid} />
+							<CandlestickSeries width={timeIntervalBarWidth(utcDay)}/>
+							<MouseCoordinateY
+								at="right"
+								orient="right"
+								displayFormat={format(".2f")} />
+							<MouseCoordinateX
+								at="bottom"
+								orient="bottom"
+								displayFormat={timeFormat("%Y-%m-%d")} />
+						</Chart>
+						<CrossHairCursor />
+					</ChartCanvas>
+				</div>
+			</div>
 		</div>
 	);
 }

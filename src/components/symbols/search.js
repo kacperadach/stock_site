@@ -21,7 +21,7 @@ function Search() {
             if (searchTerm === data['term']) {
                 setSymbols(data['results']);
             }
-        });
+        }); 
     }, [searchTerm]);
 
     return (
@@ -32,7 +32,7 @@ function Search() {
                     name="symbols-input" 
                     placeholder="Search..."
                     onChange={(event) => setSearchTerm(event.target.value)}
-                    className="block bg-gray-200 ml-20 w-1/3 p-2 border-gray-300 border" />
+                    className="block bg-gray-200 ml-20 p-2 border-gray-300 border w-full" />
             {symbols.length !== 0 && <SearchResults symbols={symbols} />}
         </div>
     );
@@ -41,7 +41,7 @@ function Search() {
 function SearchResults({ symbols }) {
 
     return (
-        <div className="ml-20 w-1/2 px-2 border-gray-300 border rounded-b-lg fixed z-10 bg-gray-100" id="symbol-dropdown">
+        <div className="ml-20 px-2 border-gray-300 border rounded-b-lg fixed z-10 bg-gray-100" id="symbol-dropdown">
             <ul>
                 {symbols.map((symbol, num) => 
                     {return <li key={num} className="border-b-2 p-2"><a href={`/chart/${symbol.uid}`}>{getSymbolString(symbol)}</a></li>}

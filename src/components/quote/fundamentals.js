@@ -5,10 +5,9 @@ export default function Fundamentals({ fundamentals }) {
     if (Object.entries(fundamentals).length === 0 && fundamentals.constructor === Object) {
         return null;
     }
-    console.log(fundamentals);
+
     return (
         <div>
-            <div>{fundamentals.data.description}</div>
             <Stats stats={fundamentals.data.stats} />
             <Insider insider={fundamentals.data.insider} />
             <News news={fundamentals.data.news} />

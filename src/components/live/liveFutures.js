@@ -28,9 +28,8 @@ function LiveFutures() {
         desc = () => null;
     }
 
-
     return (
-        <div className="flex flex-row">
+        <div className="flex flex-row p-4">
             <PaginationButton direction="desc" onClick={desc} />
             {futures.slice(offset, offset + PER_PAGE).map(d => {
                 return (
